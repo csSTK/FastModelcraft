@@ -1,0 +1,19 @@
+[project]
+name = "FastModelcraft"
+version = "0.1.0"
+description = "Create Pydantic models and manage 3D models for Pydantic models"
+authors = [
+    {name = "csSTK", email = "paulotto.bethge@gmail.com"},
+]
+dependencies = ["typer[all]>=0.15.2"]
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
