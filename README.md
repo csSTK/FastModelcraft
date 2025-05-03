@@ -1,6 +1,6 @@
 # FastModelcraft - Tools for visualising and modelling data structures
 
-## Übersicht
+## Overview
 
 This repository contains tools for visualising data models and converting CSV files into Pydantic models. It offers two main functions:
 
@@ -17,7 +17,7 @@ To use the tools, make sure you have Python 3.x and pdm installed. The following
 - `pydantic` for modelling
 - `sqlalchemy` for SQLAlchemy integration
 
-Installiere die erforderlichen Pakete mit:
+Install the required packages with:
 
 ```bash
 pdm install --frozen-lock
