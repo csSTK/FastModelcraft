@@ -81,6 +81,7 @@ Once you have created the mermaid diagram, you can convert it into an SVG or PNG
 Problems may occur when using `mermaid-cli`. Therefore, I recommend running it in a Docker container. Make sure Docker is installed on your system and run the following command:
 
 ```bash
+sudo chmod -R 777 $(pwd)
 sudo docker run --rm -v $(pwd):/data minlag/mermaid-cli -i diagram.mmd -o diagram.svg
 ```
 
