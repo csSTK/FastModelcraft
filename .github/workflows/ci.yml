@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+
+      - name: Install PDM
+        run: |
+          python -m pip install --upgrade pip
+          pip install pdm
+
+      - name: Install dependencies
+        run: pdm install
+
+      - name: Build the package
+        run: pdm build
+
+      # No unit tests yet: run both CLIs on the bundled examples from the README.
+      - name: Smoke test CLIs
+        run: |
+          pdm run python -m src.schema_mapper src/schema_mapper/example.csv --model-name UserModel --output "$RUNNER_TEMP/user_model.py"
+          pdm run python -m src.datamodel_viz src/datamodel_viz/example_models.py --output "$RUNNER_TEMP/diagram.mmd"
+          test -s "$RUNNER_TEMP/user_model.py"
+          test -s "$RUNNER_TEMP/diagram.mmd"
